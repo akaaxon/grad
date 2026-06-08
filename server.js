@@ -37,7 +37,7 @@ const transporter = nodemailer.createTransport({
 })
 
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://edu-liu.netlify.app/',
     methods: ['GET', 'POST', 'PATCH', 'DELETE', 'PUT'],
     credentials: true
 }))
