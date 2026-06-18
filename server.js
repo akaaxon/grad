@@ -245,7 +245,7 @@ app.post("/admin/approve/:i", verifyAdmin, async (req, res) => {
                     <p><strong>Appointment Time:</strong> ${new Date(booking.appointment_time).toLocaleString()}</p>
                     <p>Please make sure to arrive on time.</p>
                     <br/>
-                    <p>Best regards,<br/>The Administration Team</p>
+                    <p>Best regards,<br/>The Administration Team</p> 
                 </div>
             `
         }
