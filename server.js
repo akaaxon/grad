@@ -29,12 +29,14 @@ const supabase = createClient(
 const upload = multer({ storage: multer.memoryStorage() })
 
 const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.gmail.com', 
+    port: 587,
+    secure: false, 
     auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
     }
-})
+});
 
 app.use(cors({
     origin: 'https://edu-liu.netlify.app',
