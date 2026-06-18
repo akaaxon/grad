@@ -250,7 +250,9 @@ app.post("/admin/approve/:i", verifyAdmin, async (req, res) => {
             `
         }
 
-        transporter.sendMail(mailOptions).catch(() => { })
+        transporter.sendMail(mailOptions)
+  .then((info) => console.log("Email sent:", info.response))
+  .catch((err) => console.error("Email failed:", err));
 
         return res.status(200).json({ message: "Booking was approved successfully" })
     } catch (error) {
