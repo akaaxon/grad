@@ -252,9 +252,16 @@ app.post("/admin/approve/:i", verifyAdmin, async (req, res) => {
             `
         }
 
-        transporter.sendMail(mailOptions)
-  .then((info) => console.log("Email sent:", info.response))
-  .catch((err) => console.error("Email failed:", err));
+       try {
+            console.log(`[EMAIL] Attempting to send approval email to: ${booking.students.email}`);
+            const info = await transporter.sendMail(mailOptions);
+            console.log(`[EMAIL] Success! Message ID: ${info.messageId}`);
+        } catch (emailError) {
+            // This will log the REAL reason (auth fail, timeout, etc.) to your Render dashboard
+            console.error("[EMAIL] FAILED to send approval email:", emailError);
+            // We don't throw here so the booking status remains "approved" in DB,
+            // but you are now aware that the email notification failed.
+        }
 
         return res.status(200).json({ message: "Booking was approved successfully" })
     } catch (error) {
