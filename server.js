@@ -159,7 +159,7 @@ app.post('/api/admin/login', async (req, res) => {
         res.cookie('token', token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'lax',
+            sameSite: 'none',
             maxAge: 24 * 60 * 60 * 1000,
             path: "/"
         })
@@ -202,7 +202,7 @@ app.post('/api/admin/logout', (req, res) => {
     res.clearCookie('token', {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax',
+        sameSite: 'none',
         path: '/'
     })
     return res.status(200).json({ message: "Signed out successfully." })
@@ -470,7 +470,7 @@ app.post("/api/student/login", async (req, res) => {
         res.cookie('studentToken', token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'lax',
+            sameSite: 'none',
             maxAge: 24 * 60 * 60 * 1000,
             path: '/'
         })
@@ -485,7 +485,7 @@ app.post("/api/student/logout", (req, res) => {
     res.clearCookie('studentToken', {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax',
+        sameSite: 'none',
         path: '/'
     })
     return res.status(200).json({ message: "Signed out successfully." })
